@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Revenec
 
-## Getting Started
+Infraestructura digital para pasaportes de productos circulares.
 
-First, run the development server:
+Revenec permite crear pasaportes digitales verificables para activos tecnológicos complejos como baterías, paneles solares y neumáticos, registrando su ciclo de vida, eventos de gestión y certificaciones de circularidad.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Problema
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+El crecimiento acelerado de tecnologías intensivas en materiales está generando grandes volúmenes de residuos complejos.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Actualmente no existen sistemas digitales confiables que permitan:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- rastrear el ciclo de vida de estos activos
+- verificar procesos de reutilización
+- certificar la valorización de materiales
 
-## Learn More
+## Solución
 
-To learn more about Next.js, take a look at the following resources:
+Revenec desarrolla una plataforma digital que permite:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- generar pasaportes digitales de activos
+- registrar eventos verificables de ciclo de vida
+- emitir certificados de circularidad
+- facilitar la trazabilidad entre actores del ecosistema
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Casos de uso
 
-## Deploy on Vercel
+- baterías
+- paneles solares
+- neumáticos
+- residuos tecnológicos complejos
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Tecnología
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+La plataforma combina:
+
+- pasaportes digitales de productos
+- trazabilidad del ciclo de vida
+- certificación verificable
+- infraestructura digital distribuida
+
+## Demo
+
+La plataforma incluye un prototipo funcional que permite visualizar pasaportes digitales de activos y eventos asociados.
+
+## Website
+
+https://revenec.vercel.app
+
+## Licencia
+
+MIT
