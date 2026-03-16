@@ -13,8 +13,8 @@ export default function PassportPage() {
   const [events,setEvents] = useState([])
   const [certificate,setCertificate] = useState(null)
   const passportUrl = asset
-    ? `http://localhost:3000/passport/${asset.passport_id}`
-    : ""
+  ? `${window.location.origin}/passport/${asset.passport_id}`
+  : ""
 
   useEffect(() => {
 
