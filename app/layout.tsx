@@ -16,10 +16,6 @@ export const metadata = {
   title: "Revenec | Pasaportes digitales para materiales circulares",
   description:
     "Infraestructura digital para trazabilidad, certificación de segunda vida y pasaportes digitales de activos tecnológicos",
-
-  icons: {
-    icon: "/favicon.png",
-  },
 };
 
 export default function RootLayout({
