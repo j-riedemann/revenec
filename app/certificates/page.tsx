@@ -1,77 +1,136 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { supabase } from "../../lib/supabase"
-import { registerOnBlockchain } from "../../lib/contract"
+import Link from "next/link"
 
-export default function CreateCertificate(){
+export default function CertificatesPage(){
 
-  const [assetId,setAssetId] = useState("")
-  const [type,setType] = useState("Second Life")
+  const [certificates,setCertificates] = useState([])
+  const [loading,setLoading] = useState(true)
 
-  const generateHash = () => {
-    return Math.random().toString(36).substring(2,12)
-  }
+  useEffect(()=>{
 
-  const createCertificate = async () => {
+    const loadCertificates = async () => {
 
-  const hash = generateHash()
+      const { data, error } = await supabase
+        .from("certificates")
+        .select(`
+          *,
+          assets (
+            passport_id,
+            manufacturer,
+            asset_type
+          )
+        `)
+        .order("created_at",{ascending:false})
 
-  const { data:asset } = await supabase
-    .from("assets")
-    .select("*")
-    .eq("passport_id", assetId)
-    .single()
-
-  if(!asset){
-    alert("Asset not found")
-    return
-  }
-
-  const txHash = await registerOnBlockchain(asset.passport_id, hash)
-
-  const { error } = await supabase
-    .from("certificates")
-    .insert([
-      {
-        asset_id: asset.id,
-        issuer: "CircularChain",
-        certificate_type: type,
-        hash: hash,
-        blockchain_tx: txHash
+      if(error){
+        console.error("Error loading certificates:", error.message)
+      } else {
+        setCertificates(data || [])
       }
-    ])
 
-  if(error){
-    alert(error.message)
-  } else {
-    alert("Certificate created!")
+      setLoading(false)
+    }
+
+    loadCertificates()
+
+  },[])
+
+  if(loading){
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        Loading certificates...
+      </div>
+    )
   }
-
-}
 
   return(
 
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-100 p-10">
 
-      <div className="bg-white p-8 rounded-xl shadow-lg w-96">
+      <h1 className="text-3xl font-bold mb-6">
+        Circular Certificates
+      </h1>
 
-        <h1 className="text-2xl font-bold mb-6">
-          Issue Circular Certificate
-        </h1>
+      <div className="bg-white p-6 rounded-xl shadow">
 
-        <input
-          className="w-full border p-2 rounded mb-4"
-          placeholder="Asset ID"
-          onChange={(e)=>setAssetId(e.target.value)}
-        />
+        <table className="w-full">
 
-        <button
-          onClick={createCertificate}
-          className="w-full bg-black text-white p-2 rounded"
-        >
-          Issue Certificate
-        </button>
+          <thead>
+            <tr className="border-b text-gray-600 text-sm">
+              <th className="text-left p-2">Type</th>
+              <th className="text-left p-2">Passport</th>
+              <th className="text-left p-2">Asset</th>
+              <th className="text-left p-2">Issuer</th>
+              <th className="text-left p-2">Blockchain</th>
+              <th className="text-left p-2">Verify</th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            {certificates.length === 0 && (
+              <tr>
+                <td colSpan="6" className="text-center p-4 text-gray-500">
+                  No certificates yet
+                </td>
+              </tr>
+            )}
+
+            {certificates.map((cert)=>(
+              <tr key={cert.id} className="border-b hover:bg-gray-50">
+
+                <td className="p-2 font-medium">
+                  {cert.certificate_type}
+                </td>
+
+                <td className="p-2">
+                  {cert.assets?.passport_id || "—"}
+                </td>
+
+                <td className="p-2">
+                  {cert.assets?.asset_type || "—"}
+                </td>
+
+                <td className="p-2">
+                  {cert.issuer}
+                </td>
+
+                {/* 🔥 BLOCKCHAIN */}
+                <td className="p-2">
+                  {cert.blockchain_tx ? (
+                    <a
+                      href={`https://sepolia.etherscan.io/tx/${cert.blockchain_tx}`}
+                      target="_blank"
+                      className="text-green-600 underline text-sm"
+                    >
+                      ✔ Verified
+                    </a>
+                  ) : (
+                    <span className="text-gray-400 text-sm">
+                      Not registered
+                    </span>
+                  )}
+                </td>
+
+                {/* VERIFY */}
+                <td className="p-2">
+                  <Link
+                    href={`/verify/${cert.hash}`}
+                    className="text-blue-600 underline"
+                  >
+                    View
+                  </Link>
+                </td>
+
+              </tr>
+            ))}
+
+          </tbody>
+
+        </table>
 
       </div>
 
