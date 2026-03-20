@@ -392,7 +392,7 @@ const lastEvent = getLastEventWithLocation(events)
       
 
       {/* PANEL DERECHO */}
-        <div className="bg-white p-6 rounded-xl shadow-lg w-[520px] flex flex-col">
+        <div className="bg-white p-8 rounded-xl shadow-lg w-full md:w-[520px] ">
 
           {/* FOTO */}
           
