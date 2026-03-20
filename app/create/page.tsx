@@ -1,10 +1,17 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { supabase } from "../../lib/supabase"
 import { mintPassportNFT } from "../../lib/passportNFT"
+import GoogleMapView from "../../components/GoogleMapView"
+
+
 
 export default function CreatePassport() {
+
+  const [lat, setLat] = useState(null)
+  const [lng, setLng] = useState(null)
+  const [location, setLocation] = useState("")
 
   const [type,setType] = useState("")
   const [manufacturer,setManufacturer] = useState("")
@@ -73,7 +80,10 @@ export default function CreatePassport() {
           manufacturer,
           responsible_name: responsibleName,
           responsible_rut: responsibleRut,
-          nft_tx: txHash
+          nft_tx: txHash,
+          location,
+          lat,
+          lng
         }
       ])
       .select()
@@ -126,14 +136,39 @@ export default function CreatePassport() {
 
   }
 
+  useEffect(() => {
+  if (!navigator.geolocation) {
+    setLat(-33.45)
+    setLng(-70.66)
+    return
+  }
+
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      setLat(position.coords.latitude)
+      setLng(position.coords.longitude)
+    },
+    (error) => {
+      console.log("Location error", error)
+
+      // fallback
+      setLat(-33.45)
+      setLng(-70.66)
+    }
+  )
+  }, [])
+
   return (
 
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+  <div className="flex justify-center items-center min-h-screen bg-gray-100 p-10">
 
+    <div className="flex gap-10">
+
+      {/* FORMULARIO */}
       <div className="bg-white p-8 rounded-xl shadow-lg w-96">
 
         <h1 className="text-2xl font-bold mb-6">
-          Create Digital Passport
+          Crear Pasaporte Digital
         </h1>
 
         {/* TYPE SELECTOR */}
@@ -141,29 +176,28 @@ export default function CreatePassport() {
           className="w-full border p-2 rounded mb-4"
           onChange={(e)=>setType(e.target.value)}
         >
-          <option value="">Select type</option>
-          <option value="battery">🔋 Battery</option>
-          <option value="solar">☀️ Solar Panel</option>
-          <option value="tire">🛞 Tire</option>
+          <option value="">Seleccionar tipo</option>
+          <option value="battery">🔋 Batería</option>
+          <option value="solar">☀️ Panel Solar</option>
+          <option value="tire">🛞 Neumático</option>
         </select>
 
-        {/* COMMON */}
         <input
           className="w-full border p-2 mb-2"
-          placeholder="Manufacturer"
-          onChange={(e)=>setManufacturer(e.target.value)}
-        />
-
-        <input
-          className="w-full border p-2 mb-2"
-          placeholder="Responsible Name (Ley REP)"
+          placeholder="Registrante"
           onChange={(e)=>setResponsibleName(e.target.value)}
         />
 
         <input
           className="w-full border p-2 mb-4"
-          placeholder="Responsible RUT"
+          placeholder="RUT"
           onChange={(e)=>setResponsibleRut(e.target.value)}
+        />
+
+        <input
+          className="w-full border p-2 mb-2"
+          placeholder="Fabricante"
+          onChange={(e)=>setManufacturer(e.target.value)}
         />
 
         {/* BATTERY */}
@@ -171,17 +205,17 @@ export default function CreatePassport() {
           <>
             <input
               className="w-full border p-2 mb-2"
-              placeholder="Chemistry (LFP, NMC...)"
+              placeholder="Química (LFP, NMC...)"
               onChange={(e)=>setChemistry(e.target.value)}
             />
             <input
               className="w-full border p-2 mb-2"
-              placeholder="Capacity (kWh)"
+              placeholder="Capacidad (kWh)"
               onChange={(e)=>setCapacity(e.target.value)}
             />
             <input
               className="w-full border p-2 mb-4"
-              placeholder="State of Health (%)"
+              placeholder="Estado de Salud (%)"
               onChange={(e)=>setSoh(e.target.value)}
             />
           </>
@@ -192,12 +226,12 @@ export default function CreatePassport() {
           <>
             <input
               className="w-full border p-2 mb-2"
-              placeholder="Panel Type (mono/poly)"
+              placeholder="Tipo (mono/poly)"
               onChange={(e)=>setPanelType(e.target.value)}
             />
             <input
               className="w-full border p-2 mb-4"
-              placeholder="Power (W)"
+              placeholder="Potencia (W)"
               onChange={(e)=>setPower(e.target.value)}
             />
           </>
@@ -208,7 +242,7 @@ export default function CreatePassport() {
           <>
             <input
               className="w-full border p-2 mb-2"
-              placeholder="Size (205/55 R16)"
+              placeholder="Medida (205/55 R16)"
               onChange={(e)=>setSize(e.target.value)}
             />
             <input
@@ -223,11 +257,44 @@ export default function CreatePassport() {
           onClick={createPassport}
           className="w-full bg-black text-white p-2 rounded hover:bg-gray-800"
         >
-          Create Passport
+          Crear Pasaporte
         </button>
 
       </div>
+      
+      {/* MAPA */}
+<div className="bg-white p-4 rounded-xl shadow-lg w-[400px] h-[500px] flex flex-col">
 
+  <h2 className="font-semibold mb-2">
+    Ubicación del activo
+  </h2>
+
+  {/* INPUT PEQUEÑO */}
+  <input
+    className="border p-2 text-sm rounded mb-2"
+    placeholder="Ej: Santiago, Chile"
+    onChange={(e)=>setLocation(e.target.value)}
+  />
+
+  {/* MAPA */}
+  
+    <div className="flex-1 rounded-lg overflow-hidden">
+      {location ? (
+        <GoogleMapView location={location} />
+      ) : lat && lng ? (
+        <GoogleMapView lat={lat} lng={lng} />
+      ) : (
+        <div className="flex items-center justify-center h-full text-gray-400 text-sm">
+          Obteniendo ubicación...
+        </div>
+      )}
     </div>
-  )
+  
+
+</div>
+
+</div>
+
+  </div>
+)
 }

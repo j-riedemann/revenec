@@ -1,8 +1,9 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { supabase } from "../../lib/supabase"
 import { registerOnBlockchain } from "../../lib/contract"
+import GoogleMapView from "../../components/GoogleMapView"
 
 export default function EventsPage(){
 
@@ -11,6 +12,9 @@ export default function EventsPage(){
   const [actor,setActor] = useState("")
   const [description,setDescription] = useState("")
   const [loading,setLoading] = useState(false)
+  const [lat, setLat] = useState(null)
+  const [lng, setLng] = useState(null)
+  const [location, setLocation] = useState("")
 
   const createEvent = async () => {
 
@@ -41,7 +45,11 @@ export default function EventsPage(){
           asset_id: asset.id,
           event_type: event,
           actor,
-          description
+          description,
+          lat,
+          lng,
+          location,
+          timestamp: new Date().toISOString()
         }
       ])
 
@@ -130,35 +138,59 @@ export default function EventsPage(){
   setLoading(false)
 }
 
+useEffect(() => {
+  if (!navigator.geolocation) {
+    setLat(-33.45)
+    setLng(-70.66)
+    return
+  }
+
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      setLat(position.coords.latitude)
+      setLng(position.coords.longitude)
+    },
+    (error) => {
+      console.log("Location error", error)
+
+      // fallback
+      setLat(-33.45)
+      setLng(-70.66)
+    }
+  )
+  }, [])
+
+
   return(
 
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
 
-      <div className="bg-white p-8 rounded-xl shadow-lg w-96">
+      <div className="bg-white p-8 rounded-xl shadow-lg w-105">
 
         <h1 className="text-2xl font-bold mb-6">
-          Add Lifecycle Event
+          Registrar Evento Ciclo de Vida
         </h1>
 
         {/* Passport ID */}
         <input
           className="w-full border p-2 rounded mb-3"
-          placeholder="Passport ID (ej: BAT-1234)"
+          placeholder="ID (ej: BAT-XXX-1234)"
           value={assetId}
           onChange={(e)=>setAssetId(e.target.value)}
         />
 
         {/* Event selector */}
         <select
-          className="w-full border p-2 rounded mb-3"
+          className="w-full border p-3 rounded mb-3"
           value={event}
           onChange={(e)=>setEvent(e.target.value)}
         >
-          <option value="">Select event</option>
-          <option value="diagnosis">Diagnosis</option>
-          <option value="refurbished">Refurbished</option>
-          <option value="second_life">Second Life</option>
-          <option value="recycling">Recycling</option>
+          <option value="">Seleccionar evento</option>
+          <option value="diagnosis">Diagnóstico</option>
+          <option value="refurbished">Reacondicionamiento</option>
+          <option value="second_life">Segunda Vida</option>
+          <option value="recycling">Reciclaje</option>
+          <option value="out_of_service">Fuera de Servicio</option>
         </select>
 
         {/* Actor */}
@@ -171,12 +203,34 @@ export default function EventsPage(){
 
         {/* Description */}
         <input
-          className="w-full border p-2 rounded mb-5"
-          placeholder="Description"
+          className="w-full border p-2 rounded mb-3"
+          placeholder="Descripción"
           value={description}
           onChange={(e)=>setDescription(e.target.value)}
         />
 
+          {/* INPUT PEQUEÑO */}
+        <input
+          className="w-full border p-2 rounded mb-4"
+          placeholder="Ubicación. Ej: Santiago, Chile"
+          onChange={(e)=>setLocation(e.target.value)}
+        />
+
+  {/* MAPA */}
+  
+    <div className="flex-1 rounded-lg overflow-hidden mb-4 h-[250px]">
+      {location ? (
+        <GoogleMapView location={location} />
+      ) : lat && lng ? (
+        <GoogleMapView lat={lat} lng={lng} />
+      ) : (
+        <div className="flex items-center justify-center h-full text-gray-400 text-sm">
+          Obteniendo ubicación...
+        </div>
+      )}
+      
+    </div>
+  
         {/* Button */}
         <button
           onClick={createEvent}
@@ -185,7 +239,7 @@ export default function EventsPage(){
             loading ? "bg-gray-400" : "bg-black hover:bg-gray-800"
           }`}
         >
-          {loading ? "Processing..." : "Add Event"}
+          {loading ? "Procesando..." : "Registrar"}
         </button>
 
       </div>

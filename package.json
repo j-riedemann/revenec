@@ -1,5 +1,5 @@
 {
-  "name": "circularchain",
+  "name": "revenec",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,11 +9,14 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@react-google-maps/api": "^2.20.8",
     "@supabase/supabase-js": "^2.99.1",
     "ethers": "^6.16.0",
+    "leaflet": "^1.9.4",
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3",
+    "react-leaflet": "^5.0.0",
     "react-qr-code": "^2.0.18"
   },
   "devDependencies": {
