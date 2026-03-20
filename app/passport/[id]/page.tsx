@@ -249,10 +249,10 @@ const lastEvent = getLastEventWithLocation(events)
   return(
 
     <div className="flex justify-center min-h-screen bg-gray-100 p-10">
-      <div className="flex flex-col md:flex-row gap-8">
+      <div className="flex gap-8 md:flex-row flex-col">
 
         {/* PASAPORTE */}
-        <div className="bg-white p-8 rounded-xl shadow-lg w-[520px]">
+        <div className="bg-white p-8 rounded-xl shadow-lg w-[520px] ">
             <div className="flex justify-between items-center mb-6">
 
               {/* TEXTO */}
