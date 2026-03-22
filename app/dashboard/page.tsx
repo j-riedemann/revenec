@@ -8,9 +8,9 @@ export default function Dashboard(){
 
   const [assets,setAssets] = useState([])
   const assetTypeLabels = {
-    battery: "Batería",
-    solar: "Panel Solar",
-    tire: "Neumático",
+    battery: "Battery",
+    solar: "Solar panel",
+    tire: "Tire",
   }
 
   useEffect(()=>{
@@ -35,7 +35,7 @@ export default function Dashboard(){
 
       <h1 className="text-3xl font-bold mb-6">
         <div>Revenec</div>
-        Pasaportes Registrados
+        Registered Passports
       </h1>
 
       <div className="bg-white p-6 rounded-xl shadow">
@@ -46,11 +46,11 @@ export default function Dashboard(){
 
             <tr className="border-b">
 
-              <th className="text-left p-2">ID Producto</th>
-              <th className="text-left p-2">Registrante</th>
-              <th className="text-left p-2">Tipo</th>
-              <th className="text-left p-2">Fabricante</th>
-              <th className="text-left p-2">Pasaporte</th>
+              <th className="text-left p-2">Product ID</th>
+              <th className="text-left p-2">Registrant</th>
+              <th className="text-left p-2">Type</th>
+              <th className="text-left p-2">Manufacturer</th>
+              <th className="text-left p-2">Passport</th>
 
             </tr>
 
@@ -77,7 +77,7 @@ export default function Dashboard(){
                     href={`/passport/${asset.passport_id}`}
                     className="text-blue-600 underline"
                   >
-                    Ver Pasaporte
+                    View Passport
                   </Link>
 
                 </td>
