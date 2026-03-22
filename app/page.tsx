@@ -21,8 +21,9 @@ Revenec
 </h1>
 
 <p className="text-xl mb-6">
-Dynamic digital product passports for traceability.
-Built to align with EU Digital Product Passport (DPP) requirements and circular economy standards.
+Dynamic digital product passports.
+Enabling compliance with EU Digital Product Passport regulations and unlocking 
+circular value through verifiable data.
 </p>
 
 <p className="opacity-90 mb-6">
