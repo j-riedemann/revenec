@@ -99,7 +99,7 @@ export default function PassportPage(){
 
   if (!events || events.length === 0) {
     return {
-      label: "En operación",
+      label: "In use",
       color: "text-blue-700",
       bg: "bg-blue-50"
     }
@@ -123,7 +123,7 @@ export default function PassportPage(){
 
     case "recycling":
       return {
-        label: "Reciclado",
+        label: "Recycled",
         color: "text-blue-700",
         bg: "bg-blue-50"
       }
@@ -144,7 +144,7 @@ export default function PassportPage(){
 
     case "diagnosis":
       return {
-        label: "Diagnóstico",
+        label: "Diagnosis",
         color: "text-yellow-700",
         bg: "bg-yellow-50"
       }
@@ -199,8 +199,8 @@ const getEnvironmentalImpact = (event, asset, details) => {
 
     case "recycling":
       return {
-        title: "Reciclaje",
-        co2: "0.8 ton",
+        title: "Recycling",
+        co2: "0.8 tonCO2",
         energy: "—",
         material: "80%"
       }
@@ -213,10 +213,10 @@ const impact = getEnvironmentalImpact(lastCircularEvent, asset, details)
 
 const getEventLabel = (type) => {
   switch(type){
-    case "diagnosis": return "Diagnóstico"
+    case "diagnosis": return "Diagnosis"
     case "refurbished": return "Reacondicionamiento"
     case "second_life": return "Segunda vida"
-    case "recycling": return "Reciclaje"
+    case "recycling": return "Recycling"
     case "out_of_service": return "Fuera de Servicio"
     default: return type
   }
@@ -259,13 +259,13 @@ const lastEvent = getLastEventWithLocation(events)
               <div>
                 <div>
                   <h1 className="text-3xl font-bold">
-                    Pasaporte Digital
+                    Digital Product Passport
                   </h1>
 
                   <p className="text-gray-500 text-2xl font-bold">
-                    {asset.asset_type === "battery" && "Batería"}
-                    {asset.asset_type === "solar" && "Panel Solar"}
-                    {asset.asset_type === "tire" && "Neumático"}
+                    {asset.asset_type === "battery" && "Battery"}
+                    {asset.asset_type === "solar" && "Solar Panel"}
+                    {asset.asset_type === "tire" && "Tire"}
                   </p>
                 </div>
               </div>                
@@ -280,9 +280,9 @@ const lastEvent = getLastEventWithLocation(events)
                       <div className="space-y-1 mb-6">
 
                         <p><b>ID:</b> {asset.passport_id}</p>
-                        <p><b>Registrante:</b> {asset.responsible_name}</p>
-                        <p><b>RUT:</b> {asset.responsible_rut}</p>
-                        <p><b>Lugar de Emisión:</b> {asset.location}</p>
+                        <p><b>Company/Registrant:</b> {asset.responsible_name}</p>
+                        <p><b>Company number:</b> {asset.responsible_rut}</p>
+                        <p><b>Place of issue:</b> {asset.location}</p>
 
                       </div>
 
@@ -290,11 +290,11 @@ const lastEvent = getLastEventWithLocation(events)
 
                       {asset.asset_type === "battery" && details && (
                         <div className="mb-1">
-                          <h2 className="font-bold mb-2">Información del producto</h2>
-                          <p><b>Fabricante:</b> {asset.manufacturer}</p>
-                          <p><b>Química:</b> {details.chemistry}</p>
-                          <p><b>Capacidad:</b> {details.capacity}</p>
-                          <p><b>Estado de salud:</b> {details.state_of_health}</p>
+                          <h2 className="font-bold mb-2">Product Information</h2>
+                          <p><b>Manufacturer:</b> {asset.manufacturer}</p>
+                          <p><b>Chemistry:</b> {details.chemistry}</p>
+                          <p><b>Capacity:</b> {details.capacity}</p>
+                          <p><b>State of Health (SOH):</b> {details.state_of_health}</p>
                         </div>
                       )}
 
@@ -350,7 +350,7 @@ const lastEvent = getLastEventWithLocation(events)
                     
 
                     {/* EVENTS */}
-                    <h2 className="font-bold mb-2">Eventos ciclo de vida</h2>
+                    <h2 className="font-bold mb-2">Lifecycle Events</h2>
 
                     <ul className="space-y-0">
 
@@ -367,19 +367,19 @@ const lastEvent = getLastEventWithLocation(events)
                           </p>
 
                           <p className="text-sm text-gray-500">
-                            Organismo: {event.actor}
+                            Organisation: {event.actor}
                           </p>
 
                           <p className="text-sm text-gray-500">
-                            Descripción: {event.description}
+                            Description: {event.description}
                           </p>
 
                           <p className="text-sm text-gray-500">
-                            Ubicación: {event.location}
+                            Location: {event.location}
                           </p>
 
                           <p className="text-sm text-gray-400">
-                            Fecha de registro: {event.timestamp}
+                            Registration Date: {event.timestamp}
                           </p>
                         </div>
 
@@ -397,7 +397,7 @@ const lastEvent = getLastEventWithLocation(events)
           {/* FOTO */}
           
           <p className="text-sm text-gray-600 mt-2 text-left font-bold">
-            Fotografía de referencia
+            Reference Image
           </p>
             
           <div className="flex justify-center mb-4">
@@ -417,11 +417,11 @@ const lastEvent = getLastEventWithLocation(events)
           {/* TEXTO UBICACIÓN */}
           {lastEvent?.location ? (
             <p className="text-sm text-gray-600 mt-2 text-left font-bold">
-              Última ubicación registrada: {lastEvent.location}
+              Last registered location: {lastEvent.location}
             </p>
           ) : asset.location ? (
             <p className="text-sm text-gray-600 mt-2 text-left font-bold">
-              Última ubicación registrada: {asset.location}
+              Last registered location: {asset.location}
             </p>
           ) : null}
           <div className="h-[250px] rounded-xl overflow-hidden">
@@ -438,7 +438,7 @@ const lastEvent = getLastEventWithLocation(events)
               <GoogleMapView lat={asset.lat} lng={asset.lng} />
             ) : (
               <div className="flex items-center justify-center h-full text-gray-400">
-                Ubicación no disponible
+                Location not available
               </div>
             )}
 
@@ -446,7 +446,7 @@ const lastEvent = getLastEventWithLocation(events)
           <div className={`mt-4 p-3 rounded-lg text-center ${status.bg}`}>
 
             <p className="text-sm text-gray-500">
-              Estado del activo
+              Product Status
             </p>
 
             <p className={`text-lg font-semibold ${status.color}`}>
@@ -455,28 +455,28 @@ const lastEvent = getLastEventWithLocation(events)
 
           </div>
             <p className="text-xs text-gray-400 mt-1">
-              Basado en eventos registrados
+              Based on registered events
             </p>
         
         {impact && (
           <div className="mt-4 p-4 rounded-xl bg-green-50 border">
 
             <p className="text-sm font-semibold text-green-700 mb-2">
-              🌱 Impacto ambiental ({impact.title})
+              🌱 Environmental Impact ({impact.title})
             </p>
 
             <div className="text-sm text-gray-700 space-y-1">
 
               <p>
-                <b>CO₂ evitado:</b> {impact.co2}
+                <b>Avoided emissions:</b> {impact.co2}
               </p>
 
               <p>
-                <b>Energía recuperada:</b> {impact.energy}
+                <b>Recovererd energy:</b> {impact.energy}
               </p>
 
               <p>
-                <b>Material valorizado:</b> {impact.material}
+                <b>Valorized material:</b> {impact.material}
               </p>
 
             </div>

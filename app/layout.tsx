@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Revenec | Pasaportes digitales para materiales circulares",
+  title: "Revenec | Digital Passports for Circular Materials",
   description:
-    "Infraestructura digital para trazabilidad, certificación de segunda vida y pasaportes digitales de activos tecnológicos",
+    "Digital infrastructure for traceability, second-life certification and digital product passports",
 };
 
 export default function RootLayout({

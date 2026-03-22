@@ -21,19 +21,19 @@ Revenec
 </h1>
 
 <p className="text-xl mb-6">
-Pasaportes digitales para trazabilidad de activos, facilitando el cumplimiento de la Ley REP
+Dynamic digital product passports for traceability
 </p>
 
 <p className="opacity-90 mb-6">
-Infraestructura digital para trazabilidad, certificación de segunda vida
-y verificación del ciclo de vida de activos tecnológicos.
+Digital infrastructure for traceability, second-life certification and
+lifecycle verification of technological products.
 </p>
 
 <a
  href="/dashboard"
  className="bg-white text-black px-6 py-3 rounded font-semibold"
 >
-Ver demo
+View demo
 </a>
 
 </div>
@@ -58,11 +58,11 @@ Ver demo
 <div className="max-w-6xl mx-auto text-center">
 
 <h2 className="text-3xl font-bold mb-4">
-Activos circulares que gestionamos
+Products supported
 </h2>
 
 <p className="text-gray-600 mb-16">
-Pasaportes digitales para trazabilidad y certificación de activos tecnológicos
+Digital passports for traceability and certification of technological products
 </p>
 
 <div className="grid md:grid-cols-3 gap-10">
@@ -77,11 +77,11 @@ Pasaportes digitales para trazabilidad y certificación de activos tecnológicos
 />
 
 <h3 className="text-xl font-semibold mb-2">
-Baterías
+Batteries
 </h3>
 
 <p className="text-gray-600">
-Certificación de segunda vida y trazabilidad de módulos reutilizados.
+Second-life certificaction and traceability of reused modules.
 </p>
 
 </div>
@@ -97,11 +97,11 @@ Certificación de segunda vida y trazabilidad de módulos reutilizados.
 />
 
 <h3 className="text-xl font-semibold mb-2">
-Paneles solares
+Solar panels
 </h3>
 
 <p className="text-gray-600">
-Seguimiento del ciclo de vida y valorización de materiales.
+Lifecycle tracking and value of materials.
 </p>
 
 </div>
@@ -117,11 +117,11 @@ Seguimiento del ciclo de vida y valorización de materiales.
 />
 
 <h3 className="text-xl font-semibold mb-2">
-Neumáticos
+Tires
 </h3>
 
 <p className="text-gray-600">
-Registro digital de procesos de reciclaje y reutilización.
+Digital registration of recycling and reusing processes.
 </p>
 
 </div>
@@ -137,29 +137,29 @@ Registro digital de procesos de reciclaje y reutilización.
 <div className="max-w-6xl mx-auto">
 
 <h2 className="text-3xl font-bold text-center mb-12">
-Cómo funciona Revenec
+How does Revenec work
 </h2>
 
 <div className="grid md:grid-cols-4 gap-8">
 
 <div className="text-center">
 <div className="text-green-600 text-4xl mb-3">①</div>
-<p>Activo registrado</p>
+<p>Product registered</p>
 </div>
 
 <div className="text-center">
 <div className="text-green-600 text-4xl mb-3">②</div>
-<p>Pasaporte digital</p>
+<p>Digital passport</p>
 </div>
 
 <div className="text-center">
 <div className="text-green-600 text-4xl mb-3">③</div>
-<p>Eventos de ciclo de vida</p>
+<p>Lifecycle events</p>
 </div>
 
 <div className="text-center">
 <div className="text-green-600 text-4xl mb-3">④</div>
-<p>Certificación circular</p>
+<p>Circular certification</p>
 </div>
 
 </div>
@@ -173,11 +173,11 @@ Cómo funciona Revenec
 <div className="max-w-6xl mx-auto text-center">
 
 <h2 className="text-3xl font-bold mb-4">
-Ecosistema circular
+Circular ecosystem
 </h2>
 
 <p className="text-gray-600 mb-16">
-Revenec conecta a los actores clave de la economía circular mediante pasaportes digitales verificables
+Revenec connects key stakeholders of the circular economy through verifiable digital passports
 </p>
 
 <div className="grid md:grid-cols-4 gap-10">
@@ -189,11 +189,11 @@ Revenec conecta a los actores clave de la economía circular mediante pasaportes
 <div className="text-4xl mb-4">🏭</div>
 
 <h3 className="font-semibold mb-2">
-Generadores
+Generators
 </h3>
 
 <p className="text-sm text-gray-600">
-Empresas que generan activos o residuos tecnológicos
+Organizations that produce technological waste streams
 </p>
 
 </div>
@@ -206,11 +206,11 @@ Empresas que generan activos o residuos tecnológicos
 <div className="text-4xl mb-4">🚛</div>
 
 <h3 className="font-semibold mb-2">
-Gestores
+Reoresentatives
 </h3>
 
 <p className="text-sm text-gray-600">
-Operadores que transportan y gestionan activos
+Organizations that transport and manage waste
 </p>
 
 </div>
@@ -223,11 +223,11 @@ Operadores que transportan y gestionan activos
 <div className="text-4xl mb-4">♻️</div>
 
 <h3 className="font-semibold mb-2">
-Recicladores
+Recyclers
 </h3>
 
 <p className="text-sm text-gray-600">
-Empresas que valorizan materiales y componentes
+Companies that value materials and components
 </p>
 
 </div>
@@ -240,11 +240,11 @@ Empresas que valorizan materiales y componentes
 <div className="text-4xl mb-4">📊</div>
 
 <h3 className="font-semibold mb-2">
-Mercados circulares
+Circular markets
 </h3>
 
 <p className="text-sm text-gray-600">
-Empresas que compran atributos de circularidad
+Companies that buy circularity atributes
 </p>
 
 </div>
@@ -262,14 +262,13 @@ Empresas que compran atributos de circularidad
 <div className="max-w-4xl mx-auto text-center">
 
 <h2 className="text-3xl font-bold mb-6">
-El desafío de la economía circular
+The challenge of the circular economy
 </h2>
 
 <p className="text-gray-600">
-El crecimiento de tecnologías como baterías, paneles solares y neumáticos
-está generando nuevos flujos de residuos complejos. Hoy no existen sistemas
-digitales confiables que permitan rastrear su ciclo de vida o verificar su
-valorización.
+The growth of technologies such as batteries, solar panels, and tires 
+is generating new streams of complex waste. Today, there are no reliable digital systems 
+that allow tracking their lifecycle or verifying their recovery/value.
 </p>
 
 </div>
@@ -281,11 +280,11 @@ valorización.
 <div className="max-w-6xl mx-auto text-center">
 
 <h2 className="text-3xl font-bold mb-4">
-Beneficios de Revenec
+Revenec benefits
 </h2>
 
 <p className="text-gray-600 mb-16">
-Infraestructura digital para acelerar la economía circular
+Digital infrastructure to accelerate circular economy
 </p>
 
 <div className="grid md:grid-cols-4 gap-10">
@@ -297,7 +296,7 @@ Infraestructura digital para acelerar la economía circular
 <div className="text-4xl mb-4">📜</div>
 
 <h3 className="font-semibold mb-2">
-Cumplimiento regulatorio
+Regulatory compliance
 </h3>
 
 <p className="text-sm text-gray-600">

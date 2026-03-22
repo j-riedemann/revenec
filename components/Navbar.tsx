@@ -13,19 +13,19 @@ Revenec
 <div className="space-x-6 text-gray-600">
 
 <a href="#problema" className="hover:text-black">
-Problema
+Problem
 </a>
 
 <a href="#solucion" className="hover:text-black">
-Solución
+Solution
 </a>
 
 <a href="#tecnologia" className="hover:text-black">
-Tecnología
+Technology
 </a>
 
 <a href="#contacto" className="hover:text-black">
-Contacto
+Contact
 </a>
 
 </div>
